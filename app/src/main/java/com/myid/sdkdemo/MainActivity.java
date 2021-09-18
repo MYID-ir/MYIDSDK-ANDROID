@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.myid.sdk.LanguageMyid;
 import  com.myid.sdk.MyidAi;
+import com.myid.sdk.MyidListener;
 import com.myid.sdk.ResultListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,11 +38,27 @@ public class MainActivity extends AppCompatActivity {
                     int result = ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     if (result == PackageManager.PERMISSION_GRANTED) {
                         status_text.setText("در حال پردازش...");
-                        myidSDK.liveNess("REFERENCE_ID",new ResultListener() {
-                                                      @Override
-                                                      public void onResult(Object Value) {
-                                                          status_text.setText(Value.toString());
-                                                      }
+                        myidSDK.liveNess("REFERENCE_ID",new MyidListener() {
+                            @Override
+                            public void onResult(enmResult Value) {
+                                status_text.setText(Value.toString());
+
+//                                        Log.e("BALVIN", faceDetection.getFrame().toString()); // get image Freame
+
+                                if(Value == enmResult.Back){
+                                    status_text.setText("فرایند لغو شد.");
+                                    Toast.makeText(getApplicationContext(), "BACK PROCESS", Toast.LENGTH_SHORT).show();
+                                }
+                                if(Value == MyidListener.enmResult.Success){
+                                    Toast.makeText(getApplicationContext(), "SUCCESS PROCCESS", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onSendDataState(enmSendDataState var1) {
+
+                            }
+
                                                   }
                         );
 
@@ -70,11 +88,24 @@ public class MainActivity extends AppCompatActivity {
                     int result = ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     if (result == PackageManager.PERMISSION_GRANTED) {
                         status_text.setText("در حال پردازش...");
-                        myidSDK.cardLiveness("REFERENCE_ID" ,new ResultListener() {
-                                                          @Override
-                                                          public void onResult(Object Value) {
-                                                              status_text.setText(Value.toString());
-                                                          }
+                        myidSDK.cardLiveness("REFERENCE_ID" ,new MyidListener() {
+                                    @Override
+                                    public void onResult(enmResult Value) {
+                                        status_text.setText(Value.toString());
+//                                        Log.e("BALVIN", faceDetection.getFrame().toString()); // get image Freame
+                                        if(Value == enmResult.Back){
+                                            status_text.setText("فرایند لغو شد.");
+                                            Toast.makeText(getApplicationContext(), "BACK PROCESS", Toast.LENGTH_SHORT).show();
+                                        }
+                                        if(Value == MyidListener.enmResult.Success){
+                                            Toast.makeText(getApplicationContext(), "SUCCESS PROCCESS", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onSendDataState(enmSendDataState var1) {
+                                        Log.e("BALVINDDD", var1.toString());
+                                    }
                                                       }
                         );
 

@@ -8,7 +8,7 @@
 
 **بخش اول نصب برروی پروژه**  **:**
 
-1. فایل‌های [MYIDSDK\_1\_0.aar](https://cdn.myid.ir/sdk/MYIDSDK_1_0.aar)در پوشه libs مربوط به ماژول app کپی کنید.
+1. فایل‌های [MYIDSDK\_1\_1.aar](https://cdn.myid.ir/sdk/MYIDSDK_1_1.aar)در پوشه libs مربوط به ماژول app کپی کنید.
 
 2. در فایل build.gradle مربوط به ماژول app در بخش {}android مقادیر زیر را طبق نمونه تکمیل نمایید.
 
