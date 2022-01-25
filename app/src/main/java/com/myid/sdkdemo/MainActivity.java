@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MyidAi myidSDK = new MyidAi(this, "KEY","TOKEN");
+        MyidAi myidSDK = new MyidAi(this, "x7AfuHk9tpo95e3tgwUj9nhE8AMfFiaPlsirToEKr4qE9mdLLlvdYxTZ92Y2","MGFYWWFFFTAFGTAFRTFWVYVTVTMGQTVUWWQUSWTUWWFYSNGGZNNNQTSYYNFTQARYRTATRAVGFGCATAAAYYUFMNRYQTFFTNRF");
         myidSDK.language(LanguageMyid.PERSIAN);
         Button btn_livenessCard = (Button) findViewById(R.id.livenessCard);
         Button btn_liveness = (Button) findViewById(R.id.liveness);
@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onResult(enmResult Value) {
                                 status_text.setText(Value.toString());
-
-//                                        Log.e("BALVIN", faceDetection.getFrame().toString()); // get image Freame
-
                                 if(Value == enmResult.Back){
                                     status_text.setText("فرایند لغو شد.");
                                     Toast.makeText(getApplicationContext(), "BACK PROCESS", Toast.LENGTH_SHORT).show();
